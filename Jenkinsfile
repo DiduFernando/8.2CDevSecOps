@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        NODE_USE_SYSTEM_CA = '1'
+    }
+
     stages {
 
         stage('Checkout') {
