@@ -36,5 +36,21 @@ pipeline {
                 bat 'npm audit || exit /b 0'
             }
         }
+
+        stage('SonarCloud Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner'
+
+                    withCredentials([
+                        string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')
+                    ]) {
+                        withSonarQubeEnv('SonarCloud') {
+                            bat "\"${scannerHome}\\bin\\sonar-scanner.bat\""
+                        }
+                    }
+                }
+            }
+        }
     }
 }
