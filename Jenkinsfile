@@ -15,7 +15,6 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm config set strict-ssl false'
                 bat 'npm install'
             }
         }
